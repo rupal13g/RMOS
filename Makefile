@@ -1,8 +1,20 @@
+NASM = nasm
+NASM_FLAGS = -f bin
+EMULATOR = qemu-system-i386
+OUTPUT = boot.bin
+SRC = boot/boot.asm
+
+
+$(OUTPUT): $(SRC)
+	$(NASM) $(NASM_FLAGS) $(SRC) -o $(OUTPUT)
+all:
+	$(OUTPUT)
+
+run: $(OUTPUT)
+	$(EMULATOR) -fda $(OUTPUT)
+
 clean:
-	rm -f boot.img
+	rm -f $(OUTPUT)
 
-.PHONY: boot
+.PHONY: all run clean
 
-boot:
-	nasm -f bin boot/boot.asm -o boot.img
-	qemu-system-i386 boot.img
