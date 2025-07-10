@@ -1,6 +1,6 @@
 NASM = nasm
 NASM_FLAGS = -f bin
-EMULATOR = qemu-system-i386
+EMULATOR = qemu-system-x86_64
 OUTPUT = boot.bin
 SRC = boot/boot.asm
 
@@ -11,7 +11,7 @@ all:
 	$(OUTPUT)
 
 run: $(OUTPUT)
-	$(EMULATOR) -fda $(OUTPUT)
+	$(EMULATOR) -drive format=raw,file=$(OUTPUT)
 
 clean:
 	rm -f $(OUTPUT)
