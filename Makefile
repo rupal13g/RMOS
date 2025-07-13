@@ -41,7 +41,4 @@ clean:
 	rm -f *.bin *.img
 
 
-debug:
-	bochs -f bochs_config
-
 
